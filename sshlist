@@ -1,0 +1,9 @@
+if [ "$1" != "" ]; then
+  # sshlist search
+  # will search through and find entries that match any subset of the search
+  cat ~/.ssh/config | grep "Host " | grep "$1"
+  exit
+fi
+
+# sshlist (show all entries)
+cat ~/.ssh/config | grep "Host "
