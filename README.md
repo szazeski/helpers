@@ -19,3 +19,11 @@ Host db
 Host db-backup
 Host aws
 ```
+
+`dockershell <partial-name>` will open a shell into the container that you typed
+```
+dockershell jenkins
+82f3844a1234 Jenkins.1.89hjcgm4bacqs432x04skyfov jenkins/jenkins:lts
+docker exec -it 82f3844a1234 bash
+jenkins@82f3844a1234:/$
+```
