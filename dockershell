@@ -1,0 +1,24 @@
+if [ "$1" != "" ]; then
+
+  # search docker ps for container id
+  CONTAINERLINE=`docker ps --format '{{ .ID }}\t{{ .Names }}\t{{ .Image }}' | grep $1`
+
+  echo $CONTAINERLINE
+
+#  if [[ $? -ne 1 ]]; then
+#     echo $?
+#     echo "Found more than one container"
+#     docker ps --format '{{ .ID }}\t{{ .Names }}\t{{ .Image }}' | grep $1
+#     exit;
+#  fi
+
+  CONTAINERID=$( echo "$CONTAINERLINE" | cut -f 1)
+  echo docker exec -it $CONTAINERID bash
+  docker exec -it $CONTAINERID bash
+  exit;
+
+fi
+
+echo " |--> expecting a container name like 'dockershell jenkins'"
+echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+docker ps --format '{{ .Names }}' | sort
