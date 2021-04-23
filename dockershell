@@ -13,8 +13,9 @@ if [ "$1" != "" ]; then
 #  fi
 
   CONTAINERID=$( echo "$CONTAINERLINE" | cut -f 1)
-  echo docker exec -it $CONTAINERID bash
-  docker exec -it $CONTAINERID bash
+  SHELL=${2:-bash}
+  echo docker exec -it $CONTAINERID $SHELL
+  docker exec -it $CONTAINERID $SHELL
   exit;
 
 fi
