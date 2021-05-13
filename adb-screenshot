@@ -1,0 +1,10 @@
+# check if device is awake
+adb shell dumpsys window | grep "mInputRestricted=false"
+if [ $? -ne 0 ]; then
+  echo "device is not waking up and unlocking, stopping"
+  exit 1
+fi
+
+TODAY=`date -u +"%Y.%m.%d-%H.%M.%S"`
+echo Saving screenshot adb-${TODAY}.png
+adb exec-out screencap -p > adb-${TODAY}.png
