@@ -27,3 +27,10 @@ dockershell jenkins
 docker exec -it 82f3844a1234 bash
 jenkins@82f3844a1234:/$
 ```
+
+`adb-type <value>` allows you to send keyboard presses to the connected android device
+```
+adb-type dkalsdu32jds#
+```
+
+`adb-screenshot` will save a PNG of the device screenshot directly to the current working directory
