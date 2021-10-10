@@ -34,3 +34,6 @@ adb-type dkalsdu32jds#
 ```
 
 `adb-screenshot` will save a PNG of the device screenshot directly to the current working directory
+
+
+`trimvideo <filename> <secondsToTrimOffFront>` allows you to remove the first x seconds of a video file, renames the current file to <filename>.old and places the new trimmed file with the old name. To revert just delete the trimmed file and remove the .old from the filename. 
