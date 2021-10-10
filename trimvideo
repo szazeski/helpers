@@ -1,0 +1,18 @@
+if [ -z "${1}" ]; then
+    echo "First argument is expecting a filename"
+    exit 1;
+fi
+
+if [[ $2 -le 0 || $2 -ge 60 ]]; then
+    echo "Second argument is expecting a number between 1-59 seconds"
+    exit 1;
+fi
+
+if [ -z `stat "$1"` ]; then
+    echo "file doesn't exist"
+    exit 1
+fi
+
+OLDFILENAME="${1}.old"
+mv "$1" "$OLDFILENAME"
+ffmpeg -i "$OLDFILENAME" -ss 00:00:${2} -codec copy "$1"
