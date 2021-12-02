@@ -34,3 +34,6 @@ adb-type dkalsdu32jds#
 ```
 
 `adb-screenshot` will save a PNG of the device screenshot directly to the current working directory
+
+
+`fasttrace <url>` will do a standard traceroute but with parameters to only make 1 request per hop, 50 max hops and only wait up to 1s for a reply to speed up the results.
