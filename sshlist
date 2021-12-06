@@ -1,7 +1,15 @@
 if [ "$1" != "" ]; then
   # sshlist search
   # will search through and find entries that match any subset of the search
-  cat ~/.ssh/config | grep "Host " | grep "$1"
+  RESULT=`cat ~/.ssh/config | grep "Host " | grep "$1"`
+  LINES=`echo "$RESULT" | wc -l`
+  if [ "$LINES" -eq "1" ]; then
+    HOSTNAME=`echo "$RESULT" | sed 's/Host //g'`
+    echo "Found one matching row - $HOSTNAME"
+    ssh $HOSTNAME
+  else
+    echo "$RESULT"
+  fi
   exit
 fi
 
