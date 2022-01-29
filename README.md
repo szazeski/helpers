@@ -37,3 +37,5 @@ adb-type dkalsdu32jds#
 
 
 `trimvideo <filename> <secondsToTrimOffFront>` allows you to remove the first x seconds of a video file, renames the current file to <filename>.old and places the new trimmed file with the old name. To revert just delete the trimmed file and remove the .old from the filename. 
+
+`dockerps` shows just the container name and status of all containers on the machine. This command is using the regular docker ps command with special formatting and some extra flags.
