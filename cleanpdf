@@ -1,0 +1,8 @@
+printf "ghostscript cleaning and resizing..."
+mv "${1}" "${1}.old"
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1}" "${1}.old"
+echo "done."
+du -h "$1"
+du -h "$1.old"
+md5sum "$1"
+md5sum "$1.old"
