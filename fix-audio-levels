@@ -1,10 +1,6 @@
-# fix-audio-levels.sh s01e01.mp4
-
-#TODO check filename was specified
-echo "fix-audio-levels <filename>"
-
 stat "$1" &> /dev/null
 if [ $? -ne 0 ]; then
+  echo "fix-audio-levels <filename>"
   echo "$i doesn't exist"
   exit 1
 fi
@@ -29,8 +25,8 @@ echo $VOLUME
 
 mv "${1}" "${1}.old"
 
-echo "ffmpeg apply audio gain..."
+echo "ffmpeg applying audio gain..."
 ffmpeg -i "${1}.old" -af ${VOLUME} -c:v copy -c:a aac -b:a 192k "$1" 2> /dev/null
 
-ls -alh "${1}.old"
-ls -alh "${1}"
+du -h "${1}.old"
+du -h "${1}"
