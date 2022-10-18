@@ -1,0 +1,36 @@
+# fix-audio-levels.sh s01e01.mp4
+
+#TODO check filename was specified
+echo "fix-audio-levels <filename>"
+
+stat "$1" &> /dev/null
+if [ $? -ne 0 ]; then
+  echo "$i doesn't exist"
+  exit 1
+fi
+
+stat "$1.ffmpegoutput" &> /dev/null
+if [ $? -ne 0 ]; then
+	ffmpeg -i "$1" -af "volumedetect" -vn -sn -dn -f null /dev/null 2> "${1}.ffmpegoutput"
+fi
+
+VOLUME=`cat "${1}.ffmpegoutput" | grep --only-matching "max_volume:.*dB" | sed "s/max_//" | sed "s/: -/=/" | sed "s/ //"`
+# [Parsed_volumedetect_0 @ 0x556a069ea340] max_volume: -10.1 dB
+# max_volume: -5.0 dB
+# volume=5.0dB
+
+if [ -z "$VOLUME" ]; then
+  echo "unable to parse max volume"
+  cat "${1}.ffmpegoutput" | grep "max_volume"
+  exit 1
+fi
+
+echo $VOLUME
+
+mv "${1}" "${1}.old"
+
+echo "ffmpeg apply audio gain..."
+ffmpeg -i "${1}.old" -af ${VOLUME} -c:v copy -c:a aac -b:a 192k "$1" 2> /dev/null
+
+ls -alh "${1}.old"
+ls -alh "${1}"
