@@ -1,0 +1,17 @@
+
+# This replicates the behavior of Windows 7zip CRC function that saves a sha256 text file next to the file
+
+for var in "$@"
+do
+
+	stat "$var.sha256" > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+	    echo "Getting hash for $var..."
+		hash=`7z h -scrcsha256 "$var" | grep "$var" | cut -d " " -f1`
+		echo "${hash,,}  $var" > "$var.sha256"
+	else
+		echo "$var - skipping, hash file already exists..."
+	fi
+
+done
+
