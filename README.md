@@ -53,7 +53,9 @@ Host aws
 ```
 
 `tree1` shows the tree from current directory with depth 1
+
 `tree2` shows the tree from current directory with depth 2
+
 `tree3` shows the tree from current directory with depth 3
 
 `trimvideo <filename> <secondsToTrimOffFront>` allows you to remove the first x seconds of a video file, renames the current file to <filename>.old and places the new trimmed file with the old name. To revert just delete the trimmed file and remove the .old from the filename. 
