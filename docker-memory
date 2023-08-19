@@ -1,0 +1,1 @@
+docker stats --format "table {{.MemUsage}}\t{{.Name}}\t{{.CPUPerc}}" --no-stream | sort --numeric-sort --reverse
