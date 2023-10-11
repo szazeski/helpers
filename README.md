@@ -38,6 +38,8 @@ docker exec -it 82f3844a1234 sh
 jenkins@82f3844a1234:/$
 ```
 
+`fastping <url>` will do a single ping with a single line of output.
+
 `fasttrace <url>` will do a standard traceroute but with parameters to only make 1 request per hop, 50 max hops and only wait up to 1s for a reply to speed up the results.
 
 `fix-audio-levels <filename>` will use ffmpeg to find the highest volume in the file, then applies audio gain to normalize it to 0db. Will save the old file incase it damages the file.

@@ -1,0 +1,5 @@
+
+# docker stop all containers
+echo 'stopping all containers...'
+
+docker ps -q | xargs docker stop
