@@ -1,0 +1,4 @@
+
+dig +noall +answer $1
+
+dig +short -x $(dig +short $1 | tail -n 1) 

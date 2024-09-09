@@ -1,0 +1,4 @@
+
+TARGET=$1
+
+ping $TARGET -c 1 -t 2
