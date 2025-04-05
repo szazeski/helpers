@@ -1,0 +1,11 @@
+export WANIP=$(curl -s ipecho.net/plain)
+FILENAME=~/wanip.log
+
+touch "$FILENAME" 
+lastip=$(tail -n 1 "$FILENAME")
+if [ "$lastip" != "$WANIP" ]; then
+  echo "" >> "$FILENAME"
+  date >> "$FILENAME"
+  echo "$WANIP" >> "$FILENAME"
+fi
+echo $WANIP
